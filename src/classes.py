@@ -68,7 +68,7 @@ class Category:
         """выводит в консоль значение приватного атрибута products"""
         expected = ""
         for i in self.__products:
-            print(f"{str(i)}")
+            print(f"{i.name}, {i.price} руб. Остаток: {i.quantity}")
         return expected
 
 
