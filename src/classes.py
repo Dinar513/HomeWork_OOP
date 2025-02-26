@@ -68,15 +68,19 @@ class Category:
     def add_product(self, product):
         """добавляет новый продукт в приватный атрибут products"""
         if product is True or product is not None:
-            self.__products.append(product)
-            Category.total_products += 1
+            try:
+                if isinstance(product, Product):
+                    self.__products.append(product)
+                    Category.total_products += 1
+            except Exception as e:
+                print(f'Ошибка {e}. Проверьте наследственность добавляемых классов.')
 
     @property
     def products(self):
         """выводит в консоль значение приватного атрибута products"""
         expected = ""
         for i in self.__products:
-            print(f"{i.name}, {i.price} руб. Остаток: {i.quantity}")
+            print(f"{str(i)}")
         return expected
 
 
