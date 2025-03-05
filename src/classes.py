@@ -69,7 +69,7 @@ class Category:
     __products: list
 
     total_categories = 0
-    total_products = 0
+    product_count = 0
 
     def __init__(self, name, description, products):
         self.name = name
@@ -77,7 +77,7 @@ class Category:
         self.__products = products
 
         Category.total_categories += 1
-        Category.total_products += len(self.__products)
+        Category.product_count += len(self.__products)
 
     def __str__(self):
         total = 0
@@ -89,9 +89,9 @@ class Category:
         """добавляет новый продукт в приватный атрибут products"""
         if product is True or product is not None:
             try:
-                if isinstance(product, Product):
+                if isinstance(product, Product) or issubclass(product, Product):
                     self.__products.append(product)
-                    Category.total_products += 1
+                    Category.product_count += 1
             except Exception as e:
                 print(f'Ошибка {e}. Проверьте наследственность добавляемых классов.')
 
@@ -104,11 +104,9 @@ class Category:
         return expected
 
 
-# if __name__ == "__main__":
 product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
 product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
-
 
 category1 = Category(
     "Смартфоны",
@@ -116,14 +114,12 @@ category1 = Category(
     [product1, product2, product3],
 )
 
-
 product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
 category2 = Category(
     "Телевизоры",
     "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
     [product4],
 )
-
 
 product6 = Product("55!!!!!!!!! QLED 4K", "Фоновая подсветка", -2, 1)
 product7 = Product("55&&&&&&&&&& QLED 4K", "Фоновая подсветка", 100, 1)

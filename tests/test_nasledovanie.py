@@ -24,14 +24,15 @@ def test_str_category(category_smartphones):
 
 def test_add_product(capsys, category_smartphones, smartphone2, bad_class):
     category_smartphones.add_product(smartphone2)
+    category_smartphones.products
     message = capsys.readouterr()
     assert (
-            message.out.strip()
-            == """Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.
-    Iphone 15, 210000.0 руб. Остаток: 8 шт."""
+        message.out.strip()
+        == """Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.
+Iphone 15, 210000.0 руб. Остаток: 8 шт."""
     )
     category_smartphones.add_product(bad_class)
     message = capsys.readouterr()
     assert message.out.strip() == (
-        "Ошибка issubclass() arg 1 must be a class. Проверьте наследственность добавляемых классов."
+        "Ошибка issubclass() arg 1 must be a class. Проверьте наследственность " "добавляемых классов."
     )
